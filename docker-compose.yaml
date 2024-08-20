@@ -1,6 +1,8 @@
 services:
   kohya-ss-gui:
     container_name: kohya-ss-gui
+    networks:
+      - my-network
     image: ghcr.io/bmaltais/kohya-ss-gui:latest
     user: 1000:0
     build:
@@ -12,7 +14,7 @@ services:
       cache_to:
         - type=inline
     ports:
-      - 7860:7860
+      - 7862:7860
     environment:
       SAFETENSORS_FAST_GPU: 1
       TENSORBOARD_PORT: ${TENSORBOARD_PORT:-6006}
@@ -55,3 +57,7 @@ services:
             - driver: nvidia
               capabilities: [gpu]
               device_ids: ["all"]
+
+networks:
+  my-network:
+    external: true
