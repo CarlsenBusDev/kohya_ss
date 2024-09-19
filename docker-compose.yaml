@@ -15,6 +15,8 @@ services:
         - type=inline
     ports:
       - 7862:7860
+    restart:
+      on-failure
     environment:
       SAFETENSORS_FAST_GPU: 1
       TENSORBOARD_PORT: ${TENSORBOARD_PORT:-6006}
